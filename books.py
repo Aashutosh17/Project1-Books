@@ -22,4 +22,12 @@ async def read_book(book_title: str):
 
     raise HTTPException(status_code=404, detail="Book not found")
 
+@app.get("books/")
+async def read_category_by_query(category: str):
+    books_to_return = []
+    for book in Books:
+        if book.get("category").casefold() == category.casefold():
+            books_to_return.append(book)
+
+    return books_to_return
 
