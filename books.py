@@ -72,3 +72,12 @@ async def delete_all_books(book_title: str):
         if Books[i].get("Title").casefold() == book_title.casefold():
             Books.pop(i)
     return {"message": f"All books titled '{book_title}' deleted."}"""
+
+@app.get("/books/byauthor/{author}/")
+async def fetch_All_Books(author : str):
+    fetch_all_books =[]
+    for book in Books:
+        if book.get('Author').casefold() == author.casefold():
+           fetch_all_books.append(book)
+
+    return fetch_all_books
